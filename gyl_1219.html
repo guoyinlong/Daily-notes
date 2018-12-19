@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .masker {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: .5;
+    }
+
+    .dialog-main {
+      width: 400px;
+      height: 200px;
+      background: #fff;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+    }
+
+    .head {
+      height: 50px;
+      line-height: 50px;
+      background: rebeccapurple;
+      color: #fff;
+      text-indent: 10px;
+    }
+
+    span.close-icon {
+      float: right;
+      padding-right: 20px;
+      font-size: 24px;
+    }
+
+    .content {
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .footer {
+      text-align: right;
+      margin-right: 50px;
+    }
+
+    .wrapper button {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<button id="btn1">提示框</button>
+<button id="btn2">确认框</button>
+<button id="btn3">输入框</button>
+
+
+<body>
+
+  <script>
+    btn1.onclick = function () {
+      new Dialog({
+        head: '消息框',
+        content: '消息框里面的内容',
+        footer: [],
+        showCloseIcon: true
+      })
+    }
+    btn2.onclick = function () {
+      new Dialog({
+        head: '确认框',
+        content: '确认框里面的内容',
+        footer: ['确定', '取消'],
+        showCloseIcon: false
+      })
+    }
+    btn3.onclick = function () {
+      new Dialog()
+
+    }
+
+    function Dialog({
+      head = '对话框',
+      content = "对话框内容",
+      footer = [],
+      showCloseIcon = true
+    }) {
+      this.head = head;
+      this.content = content;
+      this.footer = footer;
+      this.showCloseIcon = showCloseIcon;
+      this.init();
+    }
+    Dialog.prototype = {
+      init() {
+        this.createHtml()
+        this.closeDialog()
+      },
+      createHtml() {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'wrapper';
+        wrapper.innerHTML =
+          `<div class = "dialog-main">
+        <div class= "head">
+           <span>${this.head}</span>
+           <span class="close-icon">${this.showCloseIcon?'&times':''}
+           </span>
+           </div>
+           <div class = "content">
+           ${this.content}
+           </div>
+           <div class="footer">
+           ${this.appendBtn()}
+           </div>           
+        </div>
+        <div class="masker"></div>`;
+        document.body.appendChild(wrapper);
+      },
+      appendBtn() {
+        return this.footer.map(item => `<button>${item}</button>`).join('')
+      },
+      closeDialog() {
+
+      }
+    }
+
+
+    /*
+
+
+    // 将工厂模式函数重写, 并添加一个方法属性
+    function Student(name, age){
+        this.name = name;
+        this.age = age;
+        this.alertName = function(){
+            alert(this.name);
+        }
+    }
+
+    function Fruit(name, color){
+        this.name = name;
+        this.color = color;
+        this.alertName = function(){
+            alert(this.name);
+        }
+    }
+
+    // 分别new出Student和Fruit的对象
+    var v1 = new Student("easy", 20);
+    var v2 = new Fruit("apple", "green");
+
+    // 这样就可以用instanceof操作符来检测以上对象类型区分出不同的对象
+    console.log(v1 instanceof Student);        // true
+    console.log(v2 instanceof Student);        // false
+    console.log(v1 instanceof Fruit);          // false
+    console.log(v2 instanceof Fruit);          // true
+    console.log(v1 instanceof Object);         // true
+    console.log(v2 instanceof Object);         // true
+
+    var v1 = new Student("easy1", 20);
+    var v2 = new Student("easy2", 20);
+    //...
+    var vn = new Student("easyn", 20);
+    // 其中共同的alertName()函数也被实例化了n次, 我们可以用以下方法来检测不同的Strudent对象并不共用alertName()函数
+    console.log(v1.alertName == v2.alertName);      // false
+    /*
+    * @ 工厂模式创建对象
+    * @ JS中没有类的概念, 那么我们不妨就使用一种函数将以上对象创建过程封装起来以便于重复调用
+
+    /*
+    * @ 对象字面量方式来创建对象
+    * @ 缺点,无法重复
+    var student = {
+        name: "easy",
+        age: "20"
+    }
+
+    // 当我们要创建同类的student1, student2,...,studentN时, 不得不将以上的代码重复N次
+    var student2 = {
+        name: "easy2",
+        age: "20"
+    }
+    // ...
+    var studentn = {
+        name: "easyn",
+        age: "20"
+    }
+    // 这样麻烦而且重复太多, 能不能像工厂间那样, 有一个车床不断生产出对象.
+
+
+    * @ 同时可以给出特定接口来初始化对象
+    
+
+    function createStudent(name, age) {
+      var obj = new Object();
+      obj.name = name;
+      obj.age = age;
+      return obj;
+    }
+
+    var student1 = createStudent("easy1", 20);
+    var student2 = createStudent("easy2", 20);
+    // ...
+    var studentn = createStudent("easyn", 20);
+
+
+white-space:nowrap    强制不换行
+overflow:hidden       溢出隐藏
+text-overflow：ellipsis 省略号
+font-family：‘微软雅黑’  让省略号在下面
+必须给宽度
+伪类
+a:link 设置未访问时候的颜色 点击后变成a的正常颜色
+a:visited 设置访问过后颜色
+a:hover 当鼠标放上去会变颜色
+a:active 鼠标点击变颜色
+
+
+
+    */
+  </script>
+</body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装
+        //构造函数的方法封住一个类
+        //实例化的对象一定有一个constructor属性。指向这个实例化的构造函数
+        //一个构造函数一定有一个原型
+        //私有的写在构造函数里面
+        //公有的写在圆形上面
+        //节省内存占用空间
+
+        //实例对象中有__proto__原型
+        //构造函数中有prototype原型
+        //prototype是对象
+        //所以,prototype这个对象中也有__proto__,那么指向了哪里
+        //实例对象中的__proto__指向的是构造函数的prototype
+        //所以,prototype这个对象中__proto__指向的应该是某个构造函数的原型prototype
+
+        //原型里面的constructor属性与实例化对象的constructor属性是同一个
+
+
+        //聊聊自己对js面向对象的理解
+        // 面向对象是来模拟封装继承多态的， 依附于对象的变量叫属性， 依附于对象的函数叫方法， 创建对象的三种方式。
+        //原始封装方法：浪费内存
+        // 原型模式，使用构造函数的prototype属性来指定共享的属性和方法，即使用构造函数定义实例属性，使用原型定义共享的属性和方法
+        //工厂方法：节省代码量，没有关联性，浪费内存
+
+        // //构造函数：减少代码量，节省内存空间，规定了原生的继承原则
+        // 继承： JS主要通过原型链实现继承， 原型链是通过将一个类型的实例赋值给一个构造函数的原型实现的
+
+
+        //instanceof 判断一个实例化对象来自于哪里 boolean
+        //hasownproperty 判断对象是否包含某个属性和方法
+        //constrouctor 属性
+
+        // 每个对象都有一个隐士原型，_proto_隐士原型的值等于创建他的构造函数显示圆形的protot
+
+
+        // 原型链规则（属性与方法的调用规则）（实例对象的隐士显示原型与原型之间的关系）
+
+        // 一个对象当本身prototype上面都有相同的属性的时候
+        // 直接访问本身的方法或者属性
+        // 当一个对象访问某个属性狱方法的时候，首先去本身查找，没有去原型找
+    </script>
+</body>
+
+</html>
