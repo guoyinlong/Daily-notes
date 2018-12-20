@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //构造函数的继承
+
+    function Animal() {
+      this.species = "动物";
+    }
+
+    function Cat(name, color) {
+      this.name = name;
+      this.color = color;
+    }
+    //构造函数绑定  优点 可实现多继承  解决对象共享问题  可进行参数的传递
+    // 缺点  创建的实例只是子类的实例，并非真正的父类的实例 占用多余内存，无法实现复用  
+    //  只能继承构造函数内的属性方法，无法获得原型的方法
+
+    function Cat(name, color) {
+      Animal.apply(this, arguments);
+      this.name = name;
+      this.color = color;
+    }
+    var cat1 = new Cat("大毛", "黄色");
+    alert(cat1.species); // 动物
+
+
+
+
+    //     第二种方法更常见，使用prototype属性。
+    // 如果"猫"的prototype对象，指向一个Animal的实例，那么所有"猫"的实例，就能继承Animal了。
+    Cat.prototype = new Animal();
+    //相当于删除了原来的值然后又赋予了一个全新的值
+    Cat.prototype.constructor = Cat;
+    //由于加了　Cat.prototype = new Animal(); 所以这个this就指向了Animal
+    var cat1 = new Cat("大毛", "黄色");
+    alert(cat1.species); // 动物
+
+    alert(Cat.prototype.constructor == Animal); //true
+    // 更重要的是，每一个实例也有一个constructor属性，默认调用prototype对象的constructor属性。
+    alert(cat1.constructor == Cat.prototype.constructor); // true
+    // 因此，在运行"Cat.prototype = new Animal();"这一行之后，
+    // cat1.constructor也指向Animal！
+    alert(cat1.constructor == Animal); //true
+    //这显然会导致继承链的紊乱（cat1明明是用构造函数Cat生成的），因此我们必须手动纠正，
+    // 将Cat.prototype对象的constructor值改为Cat。这就是第二行的意思。
+    // 这是很重要的一点，编程时务必要遵守。下文都遵循这一点，
+    // 即如果替换了prototype对象，
+    o.prototype = {};
+    // 那么，下一步必然是为新的prototype对象加上constructor属性，
+    // 并将这个属性指回原来的构造函数。
+    o.prototype.constructor = o;
+  </script>
+
+
+
+
+
+
+
+
+  <!-- 
+  /*
+  * 构造与原型混合模式创建对象
+  * 我们结合原型模式在共享方法属性以及构造函数模式在实例方法属性方面的优势,使用以下的方法创建对象
+  * 在构造函数中定义实例属性，在原型中定义共享属性的模式，是目前使用最广泛的方式。通常情况下，我们都会默认使用这种方式来定义引用类型变量。
+  */
+  
+  // 我们希望每个stu拥有属于自己的name和age属性
+  function Student(name, age){
+      this.name = name;
+      this.age = age;
+  }
+  
+  // 所有的stu应该共享一个alertName()方法
+  Student.prototype = {
+      constructor: Student,
+      alertName: function(){
+          alert(this.name);
+      }
+  }
+  
+  var stu1 = new Student("Jim", 20);
+  var stu2 = new Student("Tom", 21);
+  
+  stu1.alertName();
+  stu2.alertName();
+  
+  alert(stu1.alertName == stu2.alertName);  //true  共享函数 -->
+
+  <!-- 
+word-spacing：数值 单词间距
+overflow：auto   溢出滚动
+charset     字符集
+author  作者
+copyright   版权
+keywords    关键词
+description 介绍
+
+
+ -->
+</body>
+
+</html>
