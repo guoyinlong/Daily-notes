@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //new操作符能干什么？创建一个对象，函数里面的this指向一个空的对象，将这个函数里面的所有代码转移  规定原型 原型链   返回这个对象
+        // 为什么要继承？继承有哪几种？分别说出他们的好处和缺点
+        //  继承：节省代码量，节省内存空间
+        // 第一种：借用构造函数（构造函数绑定）
+        // var Animal = function() {
+        //     this.species = '动物'
+        // }
+        // var Cat = function(name, age) {
+        //     this.name = name
+        //     this.age = age
+        //     Animal.apply(this, arguments)
+        //     console.log(this); //Cat {name: 20, age: "mimi", species: "动物"}
+
+        //     console.log(arguments);
+
+        // }
+        // var c1 = new Cat(20, 'mimi')
+        // console.log(c1);
+        //使用calll和apply直接在构造函数本身里面调用父类构造函数
+        // 优点：实现多继承
+        // 继承的时候可以进行参数的传递
+        // 缺点：不能实现共享的属性与方法，只能继承构造函数的属性方法，无法获得原型上的方法
+
+
+        // 第二种：prototype模式（原型链，子类原型指向父类原型或实例）
+        // function Animal() {
+        //     // this.species='动物'
+        // }
+        // Animal.prototype = {
+        //     run: function() {
+        //         console.log(this);
+
+        //     },
+        //     species: '动物'
+        // }
+
+        // function Cat(age, name) {
+        //     this.name = name
+        //     this.age = age
+        // }
+        // Cat.prototype = Animal.prototype
+        // Cat.prototype.constructor = Cat;
+        // var c1 = new Cat(20, 'mimi')
+        // console.log();
+        //    使用原型或者父类的实例化对象指向子类的原型实现继承
+        //     优点： 节省内存空间
+        //     缺点： 不能实现多继承
+        //     当子类的原型发生改变的时候， 父类的原型也有可能发生改变
+        //     不能进行参数的传递
+        //     子类原型上面的私有的方法必须在继承完成之后进行扩展
+
+
+        //第三种：组合式继承（伪经典继承）
+        function Animal() {
+            this.species = '动物'
+        }
+        Animal.prototype = {
+            run: function() {
+                console.log(this);
+
+            },
+            species: '动物'
+        }
+
+        function Cat(age, name) {
+            this.name = name
+            this.age = age
+            Animal.apply(this, arguments)
+        }
+        // Car.prototype = new Animal()
+        Cat.prototype.constructor = Cat
+        var c1 = new Cat(20, 'mimi')
+        console.log(c1);
+        //优点：可以传参，节省内存空间,实现多继承，可以减少每次实例化的时候多次调用，调用两次
+
+        //第四种：空对象中介
+        function Animal() {
+            this.species = '动物'
+        }
+        Animal.prototype = {
+            run: function() {
+                console.log(this);
+
+            },
+            species: '动物'
+        }
+
+        function Cat(name, age) {
+            this.name = name
+            this, age = age
+        }
+        var F = function() {}
+        F.prototype = Animal.prototype
+        Cat.prototype = new F()
+        Cat.prototype.constructor = Cat;
+        var c1 = new Cat(20, 'mimi')
+            //解决原型指向一个地址问题，并且空的对象介质几乎不占内存
+            //使用中间介质继承，解决了篡改一方的时候影响父类的原型
+
+        //第五种：拷贝继承
+
+        function Person() {}
+        Person.prototype.age = 10;
+        Person.prototype.sex = "男";
+        Person.prototype.height = 100;
+        Person.prototype.play = function() {
+            console.log("玩的好开心");
+        };
+        var obj2 = {};
+        //Person的构造中有原型prototype,prototype就是一个对象,那么里面,age,sex,height,play都是该对象中的属性或者方法
+
+        for (var key in Person.prototype) {
+            obj2[key] = Person.prototype[key];
+        }
+        console.dir(obj2);
+        obj2.play();
+
+
+
+
+
+
+
+
+
+        //继承:
+        /*
+         * 原型作用: 数据共享 ，目的是:为了节省内存空间,
+         * 原型作用: 继承 目的是:为了节省内存空间
+         *
+         * 原型继承:改变原型的指向
+         * 借用构造函数继承:主要解决属性的问题
+         * 组合继承:原型继承+借用构造函数继承
+         * 既能解决属性问题,又能解决方法问题
+         * 拷贝继承:就是把对象中需要共享的属性或者犯法,直接遍历的方式复制到另一个对象中
+    </script>
+</body>
+
+</html>
