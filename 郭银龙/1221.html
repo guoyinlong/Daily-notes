@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>拷贝继承</title>
+</head>
+
+<body>
+  <script>
+    //首先，还是把Animal的所有不变属性，都放到它的prototype对象上。
+    function Animal() {}
+    Animal.prototype.species = "动物";
+    // 然后，再写一个函数，实现属性拷贝的目的。
+    function extend2(Child, Parent) {
+      var p = Parent.prototype;
+      var c = Child.prototype;
+      for (var i in p) {
+        c[i] = p[i];
+      }
+      c.uber = p;
+    }
+    // 这个函数的作用， 就是将父对象的prototype对象中的属性， 一一拷贝给Child对象的prototype对象。
+    // 使用的时候， 这样写：
+    extend2(Cat, Animal);
+    var cat1 = new Cat("大毛", "黄色");
+    alert(cat1.species); // 动物
+
+
+
+    //非构造函数的继承
+    // 比如，现在有一个对象，叫做"中国人"。
+    var Chinese = {
+      nation: '中国'
+    };
+    // 还有一个对象，叫做"医生"。
+    var Doctor = {
+      career: '医生'
+    }
+    // 请问怎样才能让"医生"去继承"中国人"，也就是说，我怎样才能生成一个"中国医生"的对象？
+    // 这里要注意，这两个对象都是普通对象，不是构造函数，无法使用构造函数方法实现"继承"。
+    // object()方法
+    // json格式的发明人Douglas Crockford，提出了一个object()函数，可以做到这一点。
+    function object(o) {
+      function F() {}
+      F.prototype = o;
+      return new F();
+    }
+    // 这个object()函数，其实只做一件事，就是把子对象的prototype属性，指向父对象，
+    // 从而使得子对象与父对象连在一起。
+    // 使用的时候，第一步先在父对象的基础上，生成子对象：
+    var Doctor = object(Chinese);
+    Doctor.career = '医生';
+    alert(Doctor.nation); //中国
+
+
+
+
+
+
+    //单词：
+    // Animal 动物
+    //author 作者
+    //description 介绍
+    //copyrigtht  版权
+    //keywords  关键词
+    //onclick 点击的时候
+    //false 错的，没选中
+    // true 选中的 对的
+    //typeof  查看数据
+    // object 对象
+    // career 职业
+    // doctor 医生
+  </script>
+
+</body>
+
+</html>

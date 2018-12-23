@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定时器</title>
+</head>
+
+<body>
+  <button id="begin">开始</button>
+  <button id="end">停止</button>
+  <div id="name"></div>
+</body>
+<script>
+  window.onload = function () {
+    //获取标签
+    var begin = document.getElementById("begin");
+    var end = document.getElementById("end");
+    var name = document.getElementById("name");
+
+    //定义变量
+    var time = null;
+    var nameArr = ["张三", "李四", "王五", "王二麻子", "小黑", "小白", "小王"];
+    name.innerText = nameArr[0];
+
+    //监听点击
+    begin.onclick = function () {
+      //清除定时器
+      clearInterval(time);
+      time = setInterval(function () {
+        var s_index = parseInt(Math.random() * nameArr.length);
+        var s_name = nameArr[s_index];
+        name.innerText = s_name;
+
+      }, 20)
+
+    };
+    end.onclick = function () {
+      clearInterval(time)
+
+    }
+
+  }
+
+
+
+  /*
+  *Javascript中的定时器有两种，setInterval和setTimeout，而定时器的作用就是延迟执行。
+
+    $(document).ready(function(){
+      //定时执行，5秒后执行
+      var t1=window.setTimeout(refreshCount, 1000 * 5);
+      function refreshCount() {
+        console.log("ready");
+      }
+      //去掉定时器的方法  
+      window.clearTimeout(t1);   
+   });
+
+*/
+
+
+  //单词：
+  // clear 清除
+  // time 时间
+  //name 名字
+  //begin 开始
+  //element 元素
+  //parseint 整数
+  //hide 隐藏
+  // skin 皮肤
+  // code 代码
+  // even 事件
+</script>
+
+</html>
