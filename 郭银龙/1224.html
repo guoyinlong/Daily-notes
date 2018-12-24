@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //    var obj = { a:1, arr: [2,3] };
+    // var shallowObj = shallowCopy(obj);
+
+    // function shallowCopy(src) {
+    //   var newobj = {};
+    //   for (var prop in src) {
+    //     if (src.hasOwnProperty(prop)) {
+    //       newobj[prop] = src[prop];
+    //     }
+    //   }
+    //   return newobj;
+    // }
+
+    var obj = {
+      a: 1,
+      arr: [1, 2],
+      nation: '中国',
+      birthplaces: ['北京', '上海', '广州']
+    };
+    var obj2 = {
+      name: '杨'
+    };
+    obj2 = deepCopy(obj, obj2);
+    console.log(obj2);
+    //深复制，要想达到深复制就需要用递归
+    function deepCopy(o, c) {
+      var c = c || {};
+      for (var i in o) {
+        if (typeof o[i] === 'object') {
+          //要考虑深复制问题了
+          if (o[i].constructor === Array) {
+            //这是数组
+            c[i] = [];
+          } else {
+            //这是对象
+            c[i] = {};
+          }
+          deepCopy(o[i], c[i]);
+        } else {
+          c[i] = o[i];
+        }
+      }
+      return c
+    }
+
+
+    /*
+    next 下一个
+    Sibling 兄弟
+    previous 上一个
+    location 地址栏信息
+    location.search 数据信息
+    back 返回
+    forward 向前
+    history 历史
+    confirm 询问提示框
+    prompt 问答提示框
+
+    */
+  </script>
+</body>
+
+</html>
