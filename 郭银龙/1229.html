@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <div>
+
+  </div>
+  <script>
+    $("div").data("blah"); // undefined
+    $("div").data("blah", "hello"); // blah设置为hello
+    $("div").data("blah"); // hello
+    $("div").data("blah", 86); // 设置为86
+    $("div").data("blah"); //  86
+    $("div").removeData("blah"); //移除blah
+    $("div").data("blah"); // undefined
+    /*
+    事件绑定
+
+
+      jQuery中事件绑定有两种方式
+      eventName(function(){})
+      绑定对应事件名的监听,   例如：$('#div').click(function(){});
+      on(eventName, funcion(){})
+      通用的绑定事件监听, 例如：$('#div').on('click', function(){});
+      优缺点:
+      eventName: 编码方便, 但有的事件监听不支持
+      on: 编码不方便, 但更通用
+      */
+
+
+    /*
+    when 当
+    oncopy 当输入的时候
+    aside 侧边栏
+    article 文章
+    number 数字输入框
+    month 月份
+    week 周
+    video 视频
+    autoplay 自动播放
+    websql 数据库
+    */
+  </script>
+</body>
+
+</html>

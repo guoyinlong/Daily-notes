@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0px;
+    top: 30px;
+    background: green;
+    display: none;
+  }
+
+  div.newcolor {
+    background: blue;
+  }
+
+  span {
+    color: red;
+  }
+</style>
+　<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<body>
+  <button id="show">Show Length of Queue</button>
+  <span></span>
+  <div></div>
+
+
+</body>
+<script>
+  $("#show").click(function () {
+    var n = $("div").queue("fx");
+    $("span").next("Queue Length is :" + n.length);
+  });
+
+  function runIt() {
+    $("div").show("slow");
+    $("div").animate({
+      left: '+=300'
+    }, 2000);
+    $("div").slideToggle(1000);
+    $("div").slideToggle("fast");
+    $("div").animate({
+      left: '-=200'
+    }, 1500);
+    $("div").hide("slow");
+    $("div").show(1200);
+    $("div").slideUp("normal", runIt);
+  }
+  runIt();
+
+
+
+  /*
+  * linear 线性
+    radial 径向
+    repeating 重复的
+    gradient 梯度
+    circle 圆形
+    animal 动物
+    ellipse 椭圆
+    animate 有生命的
+    inline 行内
+    option 选项栏
+    
+  */
+</script>
+
+</html>

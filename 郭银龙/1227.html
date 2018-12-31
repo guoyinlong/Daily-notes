@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    /*
+        // 1.使用字面量创建对象
+        var obj = {}; // 相当于var obj = new Object()
+        // 2.动态给空对象新增属性
+        obj.name = "lnj";
+        obj.age = 33;
+        // 3.动态给空对象新增方法
+        obj.say = function () {
+            console.log("hello");
+        }
+        */
+
+    // 1.使用字面量创建对象
+    var obj = {
+      name: 'lnj',
+      age: 33,
+      say: function () {
+        console.log("hello");
+      }
+    }
+    // 2.使用对象的属性和方法
+    console.log(obj.name);
+    console.log(obj.age);
+    obj.say();
+  </script>
+
+  <script>
+    // 1.使用默认类创建一个空对象
+    var obj = new Object()
+    // 2.动态给空对象新增属性
+    obj.name = "lnj";
+    obj.age = 33;
+    // 3.动态给空对象新增方法
+    obj.say = function () {
+      console.log("hello");
+    }
+    // 4.使用对象的属性和方法
+    console.log(obj.name);
+    console.log(obj.age);
+    obj.say();
+  </script>
+  <script>
+    // <!-- 每个函数中都有一个this关键字, 谁调用当前函数, this关键字就是谁 -->
+
+    function test() {
+      console.log(this);
+    }
+    // 默认情况下直接调用的函数都是由window调用的
+    // 所以test函数中的this是window
+    test(); // 相当于window.test();
+
+    var obj = new Object()
+    obj.name = "lnj";
+    obj.age = 33;
+    obj.say = function () {
+      console.log(this.name, this.age);
+    }
+
+    // 这里的say是一个方法, 方法必须通过对象来调用
+    // 所以这里的say方法是由obj对象调用的, 所以say方法中的this是obj对象
+    obj.say();
+  </script>
+  <script>
+    /*
+  prototype 原型
+  init 开始
+  localStorage 本地存储
+  include() 包含
+   model 模型
+   then 然后
+   bind绑定
+   directive 指令
+   route 路由/状态
+   filter 过滤 筛选
+  */
+  </script>
+</body>
+
+</html>

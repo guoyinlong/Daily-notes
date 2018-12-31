@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  　<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>
+    /*
+    多个window.onload只会执行一次, 后面的会覆盖前面的
+        window.onload = function () {
+            alert("hello lnj1"); // 不会显示
+        }
+        window.onload = function () {
+            alert("hello lnj2"); // 会显示
+        }
+多个$(document).ready()会执行多次,后面的不会覆盖前面的
+        $(document).ready(function () {
+            alert("hello lnj1"); //会显示
+        });
+        $(document).ready(function () {
+            alert("hello lnj2"); // 会显示
+        });
+
+    */
+    var test1 = function () {
+      alert("hello lnj1");
+    }
+    var test2 = function () {
+      alert("hello lnj2");
+    }
+    $(document).ready(test1);
+    $(document).ready(test2);
+
+    /*
+    veruant 变量
+    common 公用
+    case 情况
+    break 跳出
+    find 查找
+    date 时间
+    get 获取
+    set 设置
+    Fullyear 满年
+    cache 缓存
+    */
+  </script>
+</body>
+
+</html>
