@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+    1. 用户打开浏览器
+    2. 地址栏输入我们需要访问的网站网址（URL）
+    3. 浏览器通过 DNS 服务器获取即将访问的网站 IP 地址
+    4. 浏览器发起一个对这个 IP 的请求
+    5. 服务端接收到这个请求，进行相应的处理
+    6. 服务端将处理完的结果返回给客户端浏览器
+    7. 浏览器将服务端返回的结果呈现到界面上
+
+
+
+     // 是这样的，我的理解
+    // 当用户打开浏览器之后也就是说在客户端输入一个网址
+    // 那么在客户端要做的事情是这样
+    //  首先去浏览器的缓存里面找到这个域名以及对应的端口，如果说浏览器的缓存里面有这个地址，直接就夹在浏览器里面的缓存
+    //不需要在发送数据请求
+    //如果没有，那么就去本地客户端的电脑上的hosts文件里面查找有没有对应的域名，如果有，直接加载本地的
+    // 如果还没有，就会调用网络运营商提供的DNS服务器去进行指定的域名解析，找到对应的IP地址，及端口号
+    // 根据这个端口号及IP地址，找到线上的某一个服务器，并且建立一个连接通道
+    // 如果这次请求是http的，服务器的默认端口是80，如果是https默认端口的443，
+    // 本地开启一个随机的端口，
+    // 这些准备都做完之后，客户端会将请求的信息打包（请求体 requestHeader 空行 requestBody）发送给服务器
+    // 服务器接收到这个客户端传递过来的数据包，并且做拆包操作，根据文件的类型进行相关的处理，如果是静态文件，直接返回给客户端，如果是动态文件，比如说php,jsp,net 会找到相应的动态文件处理软件，执行这个动态文件，并且将执行后的返回结果传递给服务器，服务器根据你请求的MIME类型，打包这个文件响应体（responseHeader,空行，responseBody），返回给你相应的文件
+    // 客户端接收文件之后，根据文件的类型，调用浏览器的引擎，html，css调用渲染引擎，。js调用js引擎，ajax，调用ajax引擎（window下面的XMLHttpRequest对象）
+
+
+
+    console 控制台
+    search  搜索
+    other 其他的
+    online 在线
+    fast 快
+    slow 慢
+    network 网络
+    hide 隐藏
+    element 元素
+    audits  审计
+    */
+  </script>
+</body>
+
+</html>
